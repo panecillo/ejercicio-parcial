@@ -1,21 +1,25 @@
 <template>
 
   <section class="src-components-principal">
-    <Botonera />
-    <router-view></router-view>
+    <div class="jumbotron mt3">
+      <Tareas />
+      <Lista />
+    </div>
   </section>
 
 </template>
 
 <script lang="js">
 
-  import Botonera from './Botonera.vue'
+  import Tareas from './Tareas.vue'
+  import Lista from './Lista'
 
   export default  {
     name: 'src-components-principal',
     props: [],
     components: {
-      Botonera
+      Tareas,
+      Lista
     },
     mounted () {
 

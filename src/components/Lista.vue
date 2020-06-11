@@ -1,46 +1,32 @@
 <template>
 
   <section class="src-components-lista">
-    <h2>Listado</h2>
 
-    
-    <button class="btn mb-2" @click="agregarContacto()">Agregar Contacto</button>
-    <button class="btn mb-2" @click="eliminarContactos()">Eliminar Contactos</button>
+<!--     <button class="btn btn my-1" type="submit" @OnClick="getTareas()">Actualizar Lista</button> -->
 
     <div class="j">
-<!--       <button class="btn btn-primary m-3" @click="getAxios()">Actualizar lista de Usuarios</button>
-      <button class="btn btn-success m-3" @click="agregarRandom()">Agrega un Usuario random</button>
-      <button class="btn btn-danger m-3" @click="borrando()">Limpiar lista de Usuarios</button>
-      <div v-if="borrandoLista">  
-        <div v-for="(usuario, id) in usuarios" :key="id">
-          {{deleteUsuarioAxios(usuario.id)}}
-        </div>
-          {{borrando()}}
-      </div> -->
-      <p v-if="$store.state.contactos">
+      <p v-if="$store.state.tareas" >
         <table class="table">
           <tr class="bg.success text-black">
-            <th>Nº</th>
+            <th>Id</th>
+            <th>Descripcion</th>
             <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Edad</th>
-            <th>Direccion</th>
             <th>Email</th>
-            <th>Telefono</th>
+            <th>Creada</th>
           </tr>
-          <tr class="bg-info text-black" v-for="(contacto, index) in $store.state.contactos" :key="index">
-            <th>{{ contacto.id }}</th>
-            <th>{{ contacto.nombre | primeraMayus }}</th>
-            <th>{{ contacto.apellido | primeraMayus }}</th>
-            <th>{{ contacto.edad }}</th>
-            <th>{{ contacto.direccion }}</th>
-            <th>{{ contacto.email }}</th>
-            <th>{{ contacto.telefono }}</th>
+          <tr class="bg-info text-black" v-for="(tarea, index) in $store.state.tareas" :key="index">
+            <th>{{ tarea.id }}</th>
+            <th>{{ tarea.descripcion }}</th>
+            <th>{{ tarea.nombre }}</th>
+            <th>{{ tarea.email }}</th>
+            <th>{{ tarea.createdAt | formatoFechaHora }}</th>
           </tr>
         </table>
       </p>
-      <p v-else class="alert alert-danger">No hay contactos para visualizar</p>
+      <p v-else class="alert alert-danger">No se encontraron tareas para mostrar</p>
     </div>
+
+    <p> Respuestas: 1-d | 2-a | 3-c | 4-b | 5-a | 6-b | 7-d | 8-c | 9-d | 10-b </p>
 
   </section>
 
@@ -55,50 +41,22 @@
     name: 'src-components-lista',
     props: [],
     mounted () {
-      axios.get(urlPosts)
-      .then( res => {
-        this.$store.state.contactos = res.data
-        console.log(this.$store.state.contactos)
-      })
-      .catch(error => {
-        console.log('ERROR GET HTTP', error)
-      })
+      this.getTareas()
     },
     data () {
       return {
-        url: ''
       }
     },
     methods: {
-      getContactos() {
+      getTareas() {
         axios.get(urlPosts)
         .then( res => {
-          this.$store.state.contactos = res.data
-          console.log(this.$store.state.contactos)
+          this.$store.state.tareas = res.data
+          console.log(this.$store.state.tareas)
         })
         .catch(error => {
           console.log('ERROR GET HTTP', error)
         })
-      },
-      agregarContacto() {
-        let contacto = []
-        axios.post(urlPosts, contacto, {
-          'content-type' : 'application/json'
-        })
-        this.getContactos()
-      },
-      eliminarContacto(id) {
-        axios.delete(urlPosts+id)
-        .then( res => {
-          console.log(res.data);
-          this.getContactos();
-        })
-      },
-      eliminarContactos() {
-        this.getContactos();
-        for(let i = 0; i < this.$store.state.contactos.length; i++) {
-          this.eliminarContacto(this.$store.state.contactos[i].id);
-        }
       }
     },
     computed: {

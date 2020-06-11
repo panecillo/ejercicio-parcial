@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Formulario from "./components/Formulario.vue"
+import Tareas from "./components/Tareas.vue"
 import Lista from "./components/Lista.vue"
 
 Vue.use(VueRouter)
@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 export default new VueRouter({
   mode: 'history',
   routes: [
-    {path: '/Formulario', component: Formulario},
+    {path: '/Tareas', component: Tareas},
     {path: '/Lista', component: Lista}
   ]
 })
