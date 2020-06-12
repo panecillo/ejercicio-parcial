@@ -129,6 +129,8 @@
         setTimeout(() => {
           this.enviando = false
         },10000)
+
+        
       }
     },
     computed: {

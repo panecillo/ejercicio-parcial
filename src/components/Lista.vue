@@ -26,7 +26,7 @@
       <p v-else class="alert alert-danger">No se encontraron tareas para mostrar</p>
     </div>
 
-    <p> Respuestas: 1-d | 2-a | 3-c | 4-b | 5-a | 6-b | 7-d | 8-c | 9-d | 10-b </p>
+    <p> Respuestas: 1-d | 2-c | 3-c | 4-b | 5-a | 6-b | 7-d | 8-c | 9-d | 10-b </p>
 
   </section>
 
@@ -43,6 +43,9 @@
     mounted () {
       this.getTareas()
     },
+    updated () {
+      this.getTareas()
+    },
     data () {
       return {
       }
@@ -52,7 +55,6 @@
         axios.get(urlPosts)
         .then( res => {
           this.$store.state.tareas = res.data
-          console.log(this.$store.state.tareas)
         })
         .catch(error => {
           console.log('ERROR GET HTTP', error)
