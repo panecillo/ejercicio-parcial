@@ -73,6 +73,7 @@
       </vue-form>
 
     </div>
+    
   </section>
 
 </template>
@@ -130,7 +131,7 @@
           this.enviando = false
         },10000)
 
-        
+
       }
     },
     computed: {

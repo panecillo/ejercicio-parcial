@@ -11,8 +11,9 @@
 
 <script lang="js">
 
-  import Tareas from './Tareas.vue'
+  import Tareas from './Tareas'
   import Lista from './Lista'
+
 
   export default  {
     name: 'src-components-principal',

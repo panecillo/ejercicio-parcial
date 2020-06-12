@@ -2,10 +2,8 @@
 
   <section class="src-components-lista">
 
-<!--     <button class="btn btn my-1" type="submit" @OnClick="getTareas()">Actualizar Lista</button> -->
-
     <div class="j">
-      <p v-if="$store.state.tareas" >
+      <p v-if="hayTareas" >
         <table class="table">
           <tr class="bg.success text-black">
             <th>Id</th>
@@ -62,7 +60,15 @@
       }
     },
     computed: {
-
+      hayTareas() {
+        let ret = false
+        if (this.$store.state.tareas != null) {
+          if (this.$store.state.tareas.length != 0) {
+            ret = true
+          }
+        }
+        return ret
+      }
     }
 }
 
@@ -87,7 +93,6 @@
   .btn {
     background-color: lightgray;
     font-size: 11px;
-/*     display: flex; */
     margin-left: 20px;
   }
 </style>
